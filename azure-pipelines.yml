@@ -5,14 +5,14 @@ trigger:
   paths:
     include:
       - backend/**
-
+ 
 pool:
   vmImage: ubuntu-latest
-
+ 
 variables:
   buildConfiguration: Release
   projectPath: backend/StudentApi.csproj
-
+ 
 stages:
 - stage: Build
   displayName: Build Backend
@@ -23,20 +23,20 @@ stages:
       inputs:
         packageType: sdk
         version: 8.x
-
+ 
     - task: DotNetCoreCLI@2
       displayName: Restore
       inputs:
         command: restore
         projects: $(projectPath)
-
+ 
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
         command: build
         projects: $(projectPath)
         arguments: --configuration $(buildConfiguration)
-
+ 
     - task: DotNetCoreCLI@2
       displayName: Publish
       inputs:
@@ -44,13 +44,13 @@ stages:
         projects: $(projectPath)
         arguments: --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
         zipAfterPublish: true
-
+ 
     - task: PublishBuildArtifacts@1
       displayName: Upload Artifact
       inputs:
         PathtoPublish: $(Build.ArtifactStagingDirectory)
         ArtifactName: backend-drop
-
+ 
 - stage: Deploy
   displayName: Deploy to Azure Web App
   dependsOn: Build
@@ -61,11 +61,12 @@ stages:
       inputs:
         artifactName: backend-drop
         downloadPath: $(System.ArtifactsDirectory)
-
+ 
     - task: AzureWebApp@1
       displayName: Deploy to Azure Web App
       inputs:
         azureSubscription: Azure-Connection
         appType: webAppLinux
-        appName: StudentRecord-WebApp-Backend
+        appName: webapp1845
         package: $(System.ArtifactsDirectory)/backend-drop/*.zip
+ 
