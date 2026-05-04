@@ -67,6 +67,5 @@ stages:
       inputs:
         azureSubscription: Azure-Connection
         appType: webAppLinux
-        appName: webapp1845
+        appName: weather-webapp
         package: $(System.ArtifactsDirectory)/backend-drop/*.zip
- 
