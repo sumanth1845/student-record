@@ -1,2 +1,2 @@
 // Backend API URL — Azure Web App
-const API_BASE = "https://weather-webapp-bzdxcqcag4aqf0h0.eastasia-01.azurewebsites.net";
+const API_BASE = "sumanth-1845-backend-ekh5f5dthdauemdj.eastasia-01.azurewebsites.net";
