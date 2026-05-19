@@ -46,7 +46,7 @@ stages:
         zipAfterPublish: true
  
     - task: PublishBuildArtifacts@1
-      displayName: Upload Artifact
+      displayName: Uploading Artifact
       inputs:
         PathtoPublish: $(Build.ArtifactStagingDirectory)
         ArtifactName: backend-drop
